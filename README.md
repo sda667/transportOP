@@ -1,12 +1,26 @@
 # 🚛 Transport Optimization – Multi-Commodity Flow Modeling
 
-This project implements and compares two linear programming models—aggregated (TMANIA) and disaggregated (TMANID)—to solve a multi-commodity flow problem across a transport network. Developed as part of the INFO-F310 (Algorithms and Operations Research) course at ULB.
+This project models and compares two linear programming formulations of a multi-commodity transport problem using Python and GLPK. It was developed as part of the INFO-F310 “Algorithms and Operations Research” course .
+
+We solve a cost-minimization problem involving the transportation of multiple distinct items across a network of nodes and arcs, considering supply/demand constraints and capacity limits. Two formulations are implemented:
+
+- **TMANIA (Aggregated Model)**: Merges commodity flows into a single variable per arc.
+- **TMANID (Disaggregated Model)**: Models one variable per item per arc, offering more control and complexity.
+
 
 ---
 
 ## 🎯 Objective
 
-Minimize the total cost of transporting multiple items from several sources to several destinations through a network of intermediate nodes, subject to capacity and flow constraints.
+The goal is to determine the most cost-efficient routing of different items from a set of origin nodes to destination nodes through a network of intermediate nodes. Each item has specific source and destination requirements, and each arc has a capacity and transport cost.
+
+**Constraints:**
+- Flow conservation at each node per commodity
+- Arc capacity limits
+- Demand/supply balancing
+
+**Objective:**
+- Minimize the total transport cost
 
 ---
 
@@ -14,8 +28,14 @@ Minimize the total cost of transporting multiple items from several sources to s
 
 Two modeling approaches were used:
 
-- **Aggregated Model (TMANIA):** One flow variable per arc, with item constraints merged.
-- **Disaggregated Model (TMANID):** One flow variable per arc and per item, providing finer granularity.
+### ✅ TMANIA – Aggregated Model
+- One variable per arc: total flow of all items combined.
+- Simpler and faster but may be infeasible when demands clash.
+
+### ✅ TMANID – Disaggregated Model
+- One variable per item per arc: models exact item routing.
+- More flexible and accurate, but higher memory and time complexity.
+
 
 
 ---
